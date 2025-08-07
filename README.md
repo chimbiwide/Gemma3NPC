@@ -1,4 +1,4 @@
-Gemma3NPC--A solution for live NPC interactions
+# Gemma3NPC--A solution for live NPC interactions
 
 ## Introduction
 
