@@ -1,5 +1,7 @@
 # Gemma3NPC--A solution for live NPC interactions
 
+We added a folder containing the code used to generate our `NPC-Dialogue_v2` dataset. Visit its [HF repo](https://huggingface.co/datasets/chimbiwide/NPC-Dialogue_v2) for more info.
+
 > [!NOTE]
 > Currently all notebooks in the `Training` folder cannot be rendered. Showing `Invalid Notebook`     
 > It will work if the notebook is opened in an IDE or Google Colab.      
