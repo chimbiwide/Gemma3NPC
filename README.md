@@ -1,5 +1,7 @@
 # Gemma3NPC--A solution for live NPC interactions
 
+A new `Gemma3NPC_v2` branch is created! Check that out to see what we are preparing for our next model.
+
 > [!NOTE]
 > Currently all notebooks in the `Training` folder cannot be rendered. Showing `Invalid Notebook`     
 > It will work if the notebook is opened in an IDE or Google Colab.      
@@ -89,3 +91,7 @@ This repository is split into three folders: `Datasets`, `Demos` and `Training`.
 
 Realized that we uploaded a text file for the Gemma3NPC-Filtered notebook. The original notebook is still there and can work by modifying the file extension.    
 We uploaded an actual notebook as well.
+
+##### 10/13/2025
+
+Updated the code to now include NPC-Dialogue_v2, our new and improved version of NPC_dialogue, with all the scripts included. We are actively working on Gemma3NPC_v2. Visit the `Gemma3NPC_v2` branch to see the code. 
