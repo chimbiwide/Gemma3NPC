@@ -104,3 +104,7 @@ Updated the code to now include NPC-Dialogue_v2, our new and improved version of
 ##### 11/25/2025
 
 Added the training notebook for `Gemma3NPC-it-beta`.
+
+##### 11/26/2025
+
+Added folder `ReLe_Syn` for the python scripts used to correctly format [KeeganC/ReLe_Synthetic_v1](https://huggingface.co/datasets/KeeganC/ReLe_Synthetic_v1)
