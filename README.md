@@ -1,11 +1,16 @@
 # Gemma3NPC--A solution for live NPC interactions
 
-We added a folder containing the code used to generate our `NPC-Dialogue_v2` dataset. Visit its [HF repo](https://huggingface.co/datasets/chimbiwide/NPC-Dialogue_v2) for more info.
+We experimented with a less conservative training parameters!
+
+Check out `Gemma3NPC_Instruct_Beta.ipynb`, inside the `Training` folder.   
+The actual model is available on [HuggingFace](https://huggingface.co/collections/chimbiwide/gemma3npc-it-beta)
 
 > [!NOTE]
 > Currently all notebooks in the `Training` folder cannot be rendered. Showing `Invalid Notebook`     
 > It will work if the notebook is opened in an IDE or Google Colab.      
 > Scroll down to see the changelog
+
+We added a folder containing the code used to generate our `NPC-Dialogue_v2` dataset. Visit its [HF repo](https://huggingface.co/datasets/chimbiwide/NPC-Dialogue_v2) for more info.
 
 ## Introduction
 
@@ -94,4 +99,8 @@ We uploaded an actual notebook as well.
 
 ##### 10/13/2025
 
-Updated the code to now include NPC-Dialogue_v2, our new and improved version of NPC_dialogue, with all the scripts included. We are actively working on Gemma3NPC_v2. Visit the `Gemma3NPC_v2` branch to see the code. 
+Updated the code to now include NPC-Dialogue_v2, our new and improved version of NPC_dialogue, with all the scripts included. We are actively working on Gemma3NPC_v2. 
+
+##### 11/25/2025
+
+Added the training notebook for `Gemma3NPC-it-beta`.
