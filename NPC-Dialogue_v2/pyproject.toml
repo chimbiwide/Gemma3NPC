@@ -1,0 +1,9 @@
+[project]
+name = "npc-dialogue"
+version = "0.1.0"
+description = "NPC Dialogue Generation"
+requires-python = ">=3.12"
+dependencies = [
+    "google-genai",
+    "python-dotenv"
+]
