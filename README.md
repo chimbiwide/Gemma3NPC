@@ -1,5 +1,7 @@
 # Gemma3NPC--A solution for live NPC interactions
 
+New model -- GemmaReLe
+
 We experimented with a less conservative training parameters!
 
 Check out `Gemma3NPC_Instruct_Beta.ipynb`, inside the `Training` folder.   
@@ -108,3 +110,5 @@ Added the training notebook for `Gemma3NPC-it-beta`.
 ##### 11/26/2025
 
 Added folder `ReLe_Syn` for the python scripts used to correctly format [KeeganC/ReLe_Synthetic_v1](https://huggingface.co/datasets/KeeganC/ReLe_Synthetic_v1)
+
+Added a new training notebook [GemmaReLe](https://github.com/chimbiwide/Gemma3NPC/blob/main/Training/GemmaReLe.ipynb) for the GemmaReLe model.
