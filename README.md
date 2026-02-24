@@ -1,11 +1,6 @@
 # Gemma3NPC--A solution for live NPC interactions
 
-New model -- GemmaReLe
-
-We experimented with a less conservative training parameters!
-
-Check out `Gemma3NPC_Instruct_Beta.ipynb`, inside the `Training` folder.   
-The actual model is available on [HuggingFace](https://huggingface.co/collections/chimbiwide/gemma3npc-it-beta)
+New model -- [Gemma3NPC-1b](https://huggingface.co/collections/chimbiwide/gemma3npc-1b)
 
 > [!NOTE]
 > Currently all notebooks in the `Training` folder cannot be rendered. Showing `Invalid Notebook`     
