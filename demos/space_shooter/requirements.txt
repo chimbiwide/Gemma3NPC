@@ -1,0 +1,19 @@
+# Web interface
+gradio>=5.39.0
+
+# AI model inference (transformers-based)
+transformers>=4.53.0
+torch>=2.5.1
+accelerate>=1.9.0
+spaces>=0.39.0
+timm
+
+# Game engine
+pygame-ce>=2.4.0
+
+# Web deployment
+pygbag>=0.8.0
+
+# Additional utilities
+numpy>=1.24.0
+requests>=2.31.0
