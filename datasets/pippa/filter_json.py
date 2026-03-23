@@ -51,6 +51,7 @@ def is_conversation_safe(moderation_scores: Dict[str, float]) -> bool:
         elif key == "self_harm_instructions" and value > 0.8:
             is_safe = False
             break
+    
 
     return is_safe
 

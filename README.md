@@ -101,4 +101,4 @@ Added the training notebook for `Gemma3NPC-it-beta`.
 
 Added folder `ReLe_Syn` for the python scripts used to correctly format [KeeganC/ReLe_Synthetic_v1](https://huggingface.co/datasets/KeeganC/ReLe_Synthetic_v1)
 
-Added a new training notebook [GemmaReLe](https://github.com/chimbiwide/Gemma3NPC/blob/main/Training/GemmaReLe.ipynb) for the GemmaReLe model.
+Added a new training notebook [GemmaReLe](https://github.com/chimbiwide/Gemma3NPC/blob/main/Training/GemmaReLe.ipynb) for the GemmaReLe model. 
