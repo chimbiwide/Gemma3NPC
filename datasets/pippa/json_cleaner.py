@@ -1,6 +1,5 @@
 import sys
 
-import ijson
 import json
 
 
