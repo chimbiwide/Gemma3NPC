@@ -68,7 +68,7 @@ async def main():
     limiter = RateLimiter(30)
     semaphore = asyncio.Semaphore(29)
 
-    quest = read_jsonl(quest_souce_file)
+    quest = read_jsonl(quest_souce_file)[:2500]
     write_lock = asyncio.Lock()
     with open(output_file, "a") as f:
         tasks = [
