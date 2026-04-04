@@ -15,25 +15,29 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 def format_quest(data: dict) -> str:
-    return f"Quest title: {data["Title"]} Quest Objective: {data["Objective"]} Text Description: {data["Text"]}"
+    return f"Quest title: {data['Title']} Quest Objective: {data['Objective']} Text Description: {data['Text']}"
+
 
 def read_jsonl(path: Path) -> list[str]:
     rows = []
-    with open(path, 'r') as f:
+    with open(path, "r") as f:
         for row in f:
             rows.append(format_quest(json.loads(row)))
     return rows
+
 
 def parse_response(input: str) -> dict | None:
     try:
         return json.loads(input)
     except:
         try:
-            return json.loads(input[input.index("{"):input.rindex("}") + 1])
+            return json.loads(input[input.index("{") : input.rindex("}") + 1])
         except json.JSONDecodeError:
             logger.error(f"Error parsing {input}")
             return None
+
 
 async def generate_desc(
     quest: str,
@@ -41,7 +45,7 @@ async def generate_desc(
     prompts: Prompts,
     file,
     limiter: RateLimiter,
-    write_lock: asyncio.Lock
+    write_lock: asyncio.Lock,
 ):
     async with semaphore:
         try:
@@ -52,8 +56,9 @@ async def generate_desc(
             logger.error(f"API Error: {e}")
             parsed = None
     async with write_lock:
-        file.write(json.dumps(parsed) + '\n')
-    logger.info(f"Done: {parsed.get("name")}" if parsed else "FAILED")
+        file.write(json.dumps(parsed) + "\n")
+    logger.info(f"Done: {parsed.get('name')}" if parsed else "FAILED")
+
 
 async def main():
     quest_souce_file = Path("../../source/rpg-quests.jsonl")
@@ -65,10 +70,13 @@ async def main():
 
     quest = read_jsonl(quest_souce_file)
     write_lock = asyncio.Lock()
-    with open(output_file, 'a') as f:
-        tasks = [generate_desc(row, semaphore, prompts, f, limiter, write_lock) for row in quest]
+    with open(output_file, "a") as f:
+        tasks = [
+            generate_desc(row, semaphore, prompts, f, limiter, write_lock)
+            for row in quest
+        ]
         await asyncio.gather(*tasks)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     asyncio.run(main())
