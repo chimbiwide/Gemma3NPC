@@ -52,6 +52,7 @@ async def generate_desc(
             await limiter.wait()
             thinking, response = await respond(prompts.generate_setting(), quest)
             parsed = parse_response(response)
+            parsed["quest"] = quest
         except Exception as e:
             logger.error(f"API Error: {e}")
             parsed = None
@@ -61,14 +62,14 @@ async def generate_desc(
 
 
 async def main():
-    quest_souce_file = Path("../../source/rpg-quests.jsonl")
+    quest_souce_file = Path(__file__).parent / "../../source/rpg-quests.jsonl"
     output_file = Path("./rpg-quests-desc.jsonl")
 
     prompts = Prompts()
     limiter = RateLimiter(30)
     semaphore = asyncio.Semaphore(29)
 
-    quest = read_jsonl(quest_souce_file)[:2500]
+    quest = read_jsonl(quest_souce_file)[:2000]
     write_lock = asyncio.Lock()
     with open(output_file, "a") as f:
         tasks = [
