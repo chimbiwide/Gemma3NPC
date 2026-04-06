@@ -102,8 +102,10 @@ By the end of the conversation, the conversation should result in at least ONE o
 • Hook for potential future interaction
 
 OUTPUT FORMAT:
+All responses must be in English.
 Return ONLY valid JSON. No markdown, no explanations, no text before or after the JSON.
-Format each NPC response as: *brief action beat* followed by dialogue in quotes.
+Format each NPC response as: *brief action beat* followed by dialogue.
+There should not be any action beats for the player's responoses. They should just be spoken words.
 Action beats should be 1 sentence maximum.
 This is just an exmaple, based on the complexity of the quest the turns can be between 10-15.
 {
