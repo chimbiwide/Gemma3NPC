@@ -77,7 +77,7 @@ Because of this, we don't have much funding. We cover the cost below:
 | Gemini API | $2.56  |
 | DeepSeek API | $7.89 |
 | Colab | $30 |
-| **Total**  | $21.56 |
+| **Total**  | $50.45 |
 
 ---
 
