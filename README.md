@@ -1,8 +1,8 @@
-# Gemma3NPC--A solution for live NPC interactions
+# GemmaNPC — A solution for live NPC interactions
 
-New model -- [Gemma3NPC-1b](https://huggingface.co/collections/chimbiwide/gemma3npc-1b)
+**Latest model**: [Gemma4NPC-E4B](https://huggingface.co/chimbiwide/Gemma4NPC-E4B) — fine-tuned on Gemma 4-E4B with the new [RolePlay-NPC-Quest](https://huggingface.co/datasets/chimbiwide/RolePlay-NPC-Quest) dataset.
 
-We added a folder containing the code used to generate our `NPC-Dialogue_v2` dataset. Visit its [HF repo](https://huggingface.co/datasets/chimbiwide/NPC-Dialogue_v2) for more info.
+Previous generation: [Gemma3NPC-1b](https://huggingface.co/collections/chimbiwide/gemma3npc-1b) | [Gemma3NPC-it](https://huggingface.co/collections/chimbiwide/gemma3npc-it-688ea87f8773403b845996c1)
 
 ## Introduction
 
@@ -12,21 +12,41 @@ With the rise of AI, there are already talks of powering NPCs with large languag
 
 Existing solutions can be found, such as the `NPC-LLM`s created by [Gigax](https://huggingface.co/Gigax). However, these models have issues: they are either too big (the models are 7/8Bs), requiring extensive hardware, or don't really show the details on how the models are created, making developers struggle when trying to implement them in their games.
 
-This is why Gemma3NPC was created, fine-tuned on Gemma3n-E4B. Its quantized versions are small enough to even run on low-end machines at a reasonable speed while also providing multimodal support, allowing text, image and audio input. Expanding the possibilities beyond traditional scripted NPCs, imagine an LLM-powered NPC that can respond to your text, know your outfit through an image input in-game or even allow you to speak with it! The possibilities are endless, and only limited by imagination and compute power.
+This is why GemmaNPC was created. The latest generation, **Gemma4NPC-E4B**, is fine-tuned on Google's new **Gemma 4-E4B** model. Like its predecessor Gemma3NPC, the quantized versions are small enough to run on low-end machines at a reasonable speed, while also retaining multimodal support for text, image, and audio input. Imagine an LLM-powered NPC that can respond to your text, recognize your outfit through an in-game image input, or even let you speak with it — the possibilities are only limited by imagination and compute.
 
-Gemma3NPC is not intended to replace traditional scripted NPCs, but merely as an extension for those interested in creating a more immersive and "lifelike" NPC. It benefits everyone: game developers can add it to their games to create better NPCs or use it to generate dialogue for their games, while players can enjoy a way more immersive gaming experience at a low cost of performance.
+GemmaNPC is not intended to replace traditional scripted NPCs, but merely as an extension for those interested in creating a more immersive and "lifelike" NPC. It benefits everyone: game developers can add it to their games to create better NPCs or use it to generate dialogue, while players can enjoy a way more immersive gaming experience at a low cost of performance.
 
-All Gemma3NPC models provide a raw float16 model that can be run using transformers or vLLM and a 4-bit and an 8-bit quantized GGUFs for directly embedding into a game using Llama.cpp or any other compatible inference engine.
+All GemmaNPC models provide a raw fp16 model that can be run using `transformers` or `vLLM`, and a 4-bit and an 8-bit quantized GGUF for directly embedding into a game using Llama.cpp or any other compatible inference engine.
 
-While many open-weight RP models are getting bigger and bigger, such as [Kimi K2](https://huggingface.co/moonshotai/Kimi-K2-Instruct) with 1T parameters, which is literally impossible to run on consumer hardware, Gemma3n offers a unique approach, as it technically is an 8B model but has the memory footprint of a 4B model, allowing local LLMs to be more accessible than ever before, especially since it supports image and audio inputs, opening up infinite possibilities for developers to create interesting models.
+---
 
-Gemma3NPC comes in two main variations: the [base role-playing model](https://huggingface.co/collections/chimbiwide/gemma3npc-688597763581aa7d9cec89ec) and the [NPC-specific model](https://huggingface.co/collections/chimbiwide/gemma3npc-it-688ea87f8773403b845996c1). However, there is a third minor variation that we tested but discarded due to poor performance: the [filtered version](https://huggingface.co/collections/chimbiwide/gemma3npc-filtered-68928c901de326594f6538ee) called `Gemma3NPC-Filtered`. The three models mostly differ in the datasets that we fine-tuned them on.
+### Datasets
+
+Gemma4NPC-E4B is trained on **[RolePlay-NPC-Quest](https://huggingface.co/datasets/chimbiwide/RolePlay-NPC-Quest)**, our most comprehensive dataset to date — a combination of:
+
+- [PIPPA](https://huggingface.co/datasets/chimbiwide/pippa) — a large, high-quality RP conversation dataset
+- [NPC-Quest-Dialogue](https://huggingface.co/datasets/chimbiwide/NPC-Quest-Dialogue) — our new quest-focused NPC dialogue dataset (first used in this generation)
+- [NPC-Dialogue_v2](https://huggingface.co/datasets/chimbiwide/NPC-Dialogue_v2) — our second-generation synthetic NPC dialogue dataset
+
+Previous Gemma3NPC generations used other variations of these datasets, the exact datasets are listed in their model cards.
+
+---
+
+### Model Variants
+
+| Model | Base | Description |
+|---|---|---|
+| `Gemma4NPC-E4B` | Gemma 4-E4B | **Latest** — NPC fine-tune on RolePlay-NPC-Quest |
+| `Gemma3NPC-it` | Gemma 3n-E4B | NPC-specific instruct fine-tune |
+| `Gemma3NPC` | Gemma 3n-E4B | Base RP fine-tune |
+| `Gemma3NPC-Filtered` | Gemma 3n-E4B | Filtered dataset variant (deprecated) |
+| `Gemma3NPC-1b` | Gemma 3n-E1B | 1B parameter variant |
 
 ---
 
 ### Ethical Considerations and Risks
 
-As warned before, we used a mature rated dataset to train this model, but through our thorough testing, the model does not present a tendency to produce such content, it is extremely capable of denying any inappropriate content.
+As warned before, we used a mature-rated dataset to train this model, but through our thorough testing, the model does not present a tendency to produce such content and is extremely capable of denying any inappropriate content.
 
 If one wishes to decrease the risk of the model generating mature content, they can always use our filtered model.
 
@@ -35,70 +55,74 @@ If one wishes to decrease the risk of the model generating mature content, they 
 ### Future Improvements
 
 #### Immediate Improvements
-- Different quantization methods (especially  `.task`)
-- creating Multi-modal GGUFS, current GGUF quants only support text input.
-- Curate more high-quality dataset to improve Roleplaying performance (`Soda`, `Open-Subtitles`)
+- Different quantization methods (especially `.task`)
+- Multi-modal GGUFs — current GGUF quants only support text input
+- Curate more high-quality datasets to improve roleplaying performance
 
 #### Long-term Vision
 - Create plugins for production-ready game engines (Unity, Unreal, Godot)
-- Create a mobile version of ReLe using the `mediapipe` framework.
+- Create a mobile version using the `mediapipe` framework
 - Training the model to use tool-calling
 
 ---
 
 ### Cost of this project
 
-We are a team two students who are passionate about AI, but one person is currently in high school, and the other  other person is on his way to college (old).
-Because of this, we don't have much funding when we did this project, we will cover the  cost below:
+We are a team of two students who are passionate about AI — one currently in high school, and the other a freshman in college.
+Because of this, we don't have much funding. We cover the cost below:
 
 | Name       | Price  |
 | ---------- | ------ |
 | Colab      | $10    |
 | Gemini API | $2.56  |
-| HF Pro     | $9     |
+| DeepSeek API | $7.89 |
+| Colab | $30 |
 | **Total**  | $21.56 |
 
 ---
 
 ### Conclusion
 
-After 5 weeks of work, we present the ***Gemma3NPC***  family of models, demonstrating improved roleplaying performance at a low cost of performance. 
+We are dedicated to the ongoing development, we present the **GemmaNPC** family of models, with the latest **Gemma4NPC-E4B** demonstrating improved roleplaying performance at a low cost of performance.
 
-The models provide a pootential solution to real time NPC interactions in game, though the solution not fully explored, we will be updating and improving the models continusly.
+The models provide a potential solution to real-time NPC interactions in games. We will be updating and improving the models continuously.
 
-We hope this project will be helpful for the both the open sourced AI community and the gaming community. We welcome any suggestions, and adoption into a video game. 
+We hope this project will be helpful for both the open-source AI community and the gaming community. We welcome any suggestions and adoption into a video game.
 
 ---
 
-### Repository structure
+### Repository Structure
 
-This repository is split into three folders: `Datasets`, `Demos` and `Training`. Containing python code for each part of the hackathon. 
+This repository is split into three folders: `datasets`, `demos`, and `training`.
 
-`Datasets` contains the code to create the four different datasets that we created to train the model.
+`datasets` contains the code to create the datasets used to train the models.
 
-`Demos` contains the code that was used to create the two Huggingface spaces.
+`demos` contains the code used to create the two Hugging Face Spaces.
 
-`Training` contains the Notebooks that we used to finetune Gemma3N
+`training` contains the notebooks used to fine-tune each model generation.
 
 ---
 
 ### Changelog
 
-##### 8/13/2025
+##### 4/8/2026
 
-Realized that we uploaded a text file for the Gemma3NPC-Filtered notebook. The original notebook is still there and can work by modifying the file extension.    
-We uploaded an actual notebook as well.
+Released **Gemma4NPC-E4B**, fine-tuned on Google's Gemma 4-E4B model using the new [RolePlay-NPC-Quest](https://huggingface.co/datasets/chimbiwide/RolePlay-NPC-Quest) dataset. This is the first GemmaNPC model to use the NPC-Quest-Dialogue dataset. Added training notebook under `training/Gemma4NPC/`.
 
-##### 10/13/2025
+##### 11/26/2025
 
-Updated the code to now include NPC-Dialogue_v2, our new and improved version of NPC_dialogue, with all the scripts included. We are actively working on Gemma3NPC_v2. 
+Added folder `rele_syn` for the python scripts used to correctly format [KeeganC/ReLe_Synthetic_v1](https://huggingface.co/datasets/KeeganC/ReLe_Synthetic_v1).
+
+Added a new training notebook [GemmaReLe](https://github.com/chimbiwide/Gemma3NPC/blob/main/training/GemmaReLe.ipynb) for the GemmaReLe model.
 
 ##### 11/25/2025
 
 Added the training notebook for `Gemma3NPC-it-beta`.
 
-##### 11/26/2025
+##### 10/13/2025
 
-Added folder `ReLe_Syn` for the python scripts used to correctly format [KeeganC/ReLe_Synthetic_v1](https://huggingface.co/datasets/KeeganC/ReLe_Synthetic_v1)
+Updated the code to now include NPC-Dialogue_v2, our new and improved version of NPC_dialogue, with all the scripts included.
 
-Added a new training notebook [GemmaReLe](https://github.com/chimbiwide/Gemma3NPC/blob/main/Training/GemmaReLe.ipynb) for the GemmaReLe model. 
+##### 8/13/2025
+
+Realized that we uploaded a text file for the Gemma3NPC-Filtered notebook. The original notebook is still there and can work by modifying the file extension. We uploaded an actual notebook as well.
